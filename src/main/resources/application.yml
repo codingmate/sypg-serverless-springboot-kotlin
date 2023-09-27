@@ -1,0 +1,8 @@
+logging:
+  level:
+    org:springframework.cloud.function: DEBUG
+
+spring:
+  cloud:
+    function:
+      definition: index1
