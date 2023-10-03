@@ -2,7 +2,7 @@ logging:
   level:
     org:springframework.cloud.function: DEBUG
 
-spring:
-  cloud:
-    function:
-      definition: index1
+#spring:
+#  cloud:
+#    function:
+#      definition: router
