@@ -8,18 +8,16 @@ import dev.sypg.app.util.JsonUtil
 import org.springframework.stereotype.Component
 
 @Component
-class LottoApi {
-    private val API_NAME: String = "lotto"
-
+class CalendarApi {
+    private val API_NAME: String = "calendar"
     private val jsonUtil by lazy { AwsLambdaHandler.applicationContext.getBean(JsonUtil::class.java) }
     private val lottoService by lazy { AwsLambdaHandler.applicationContext.getBean(LottoService::class.java) }
-
     fun index(req: APIGatewayProxyRequestEvent): APIGatewayProxyResponseEvent {
 
         var statusCode = 200
         var body = ""
         when(req.httpMethod) {
-            "GET" -> body = getRandomLottoNumbers()
+            "GET" -> { body }
             else -> {
                 statusCode = 405
                 body = "$API_NAME Method ${req.httpMethod} not found"
@@ -29,9 +27,6 @@ class LottoApi {
             .withStatusCode(statusCode)
             .withBody(body)
     }
-    private fun getRandomLottoNumbers(): String {
-        val lottoNumbers = lottoService.getRandomLottoNumbers()
-        val numbers = lottoNumbers.map { it.getNumber() }
-        return jsonUtil.mapToJson(mapOf("numbers" to jsonUtil.listToJson(numbers) ))
-    }
+
 }
+
