@@ -39,10 +39,6 @@ dependencies {
 
     implementation("io.ktor:ktor-client-core-jvm:2.3.5") // Ktor 클라이언트 의존성 추가
 
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.0")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.0")
-
 
     developmentOnly("org.springframework.cloud:spring-cloud-starter-function-web:4.0.5") // Spring Cloud Function의 웹 기능을 지원하는 스타터. 함수를 웹 엔드포인트로 노출
     implementation("org.springframework.cloud:spring-cloud-function-kotlin:4.0.5")  // Kotlin을 위한 Spring Cloud Function 지원
