@@ -1,3 +1,5 @@
 app:
   name: sypg
-  version: 1.0.0
+name: sypg
+
+app.name: sypg
