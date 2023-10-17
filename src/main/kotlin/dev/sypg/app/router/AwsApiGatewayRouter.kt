@@ -2,8 +2,8 @@ package dev.sypg.app.router
 
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
+import dev.sypg.app.api.CalendarApi
 import dev.sypg.app.api.LottoApi
-import dev.sypg.app.domain.lotto.LottoGenerator
 import dev.sypg.app.handler.AwsLambdaHandler
 import dev.sypg.app.util.JsonUtil
 import org.springframework.stereotype.Component
@@ -88,15 +88,17 @@ class AwsApiGatewayRouter {
 
     private val jsonUtil by lazy { AwsLambdaHandler.applicationContext.getBean(JsonUtil::class.java) }
     private val lottoApi by lazy { AwsLambdaHandler.applicationContext.getBean(LottoApi::class.java) }
+    private val calendarApi by lazy { AwsLambdaHandler.applicationContext.getBean(CalendarApi::class.java) }
     fun routing(req: APIGatewayProxyRequestEvent): APIGatewayProxyResponseEvent {
 
         val bodyMap: Map<String, Any> = jsonUtil.jsonToMap(req.body)
-        var res: APIGatewayProxyResponseEvent =
+        val res: APIGatewayProxyResponseEvent =
             when (bodyMap["rest"]) {
             "lotto" -> lottoApi.index(req)
+            "calendar" -> calendarApi.index(req)
             else -> APIGatewayProxyResponseEvent()
                 .withStatusCode(400)
-                .withBody("api not found")
+                .withBody("restapi(=${bodyMap["rest"]}) not found")
         }
         return res.withHeaders(mapOf("Content-Type" to "application/json"))
 

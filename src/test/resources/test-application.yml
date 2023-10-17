@@ -1,0 +1,10 @@
+# notworking!!!!!!!
+#app:
+#  name: sypg
+#  version: 1.0.0
+
+
+# 테스트에서는 nested property를 지원하지 않는 것으로 보인다..
+# -> flatten property 사용
+app.name: sypg
+app.version: 1.0.0
