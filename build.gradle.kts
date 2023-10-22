@@ -44,6 +44,8 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-function-kotlin:4.0.5")  // Kotlin을 위한 Spring Cloud Function 지원
     implementation("org.springframework.cloud:spring-cloud-function-context:4.0.5") // Spring Cloud Function의 컨텍스트 기능 제공. 함수 빈들을 관리 및 실행
     implementation("org.springframework.cloud:spring-cloud-function-adapter-aws:4.0.5")  // AWS Lambda를 위한 Spring Cloud Function 어댑터. 함수를 AWS Lambda에서 실행할 수 있게 설정
+    implementation("com.amazonaws:aws-lambda-java-events:3.11.3") // AWS Lambda 이벤트를 위한 의존성 추가
+
 
     implementation("org.springframework.boot:spring-boot-starter")  // 스프링 부트 기본 스타터. 웹 개발, 설정, AOP 등 다양한 기능 제공
     testImplementation("org.springframework.boot:spring-boot-starter-test") // 스프링 부트 테스트 스타터. JUnit, TestNG 등 테스트 프레임워크와 통합 제공.
