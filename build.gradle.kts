@@ -32,6 +32,9 @@ dependencies {
     implementation ("com.amazonaws:aws-lambda-java-events:3.11.1") // AWS Lambda 이벤트를 위한 의존성 추가
     implementation("com.amazonaws.serverless:aws-serverless-java-container-spring:2.0.0-M2")    // AWS Lambda를 위한 Spring Boot 컨테이너 의존성 추가
     implementation("com.amazonaws.serverless:aws-serverless-java-container-springboot3:2.0.0-M2")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.0.4") // OpenFeign 의존성 추가
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.15.3") // XML 지원을 위한 Jackson 의존성 추가
+
     implementation("io.ktor:ktor-client-cio-jvm:2.3.5") // AWS Lambda를 위한 Spring Boot 2 컨테이너 의존성 추가
     runtimeOnly ("com.amazonaws:aws-lambda-java-log4j2:1.5.1") // 로깅을 위한 런타임 의존성 추가
 
@@ -39,11 +42,12 @@ dependencies {
 
     implementation("io.ktor:ktor-client-core-jvm:2.3.5") // Ktor 클라이언트 의존성 추가
 
-
     developmentOnly("org.springframework.cloud:spring-cloud-starter-function-web:4.0.5") // Spring Cloud Function의 웹 기능을 지원하는 스타터. 함수를 웹 엔드포인트로 노출
     implementation("org.springframework.cloud:spring-cloud-function-kotlin:4.0.5")  // Kotlin을 위한 Spring Cloud Function 지원
     implementation("org.springframework.cloud:spring-cloud-function-context:4.0.5") // Spring Cloud Function의 컨텍스트 기능 제공. 함수 빈들을 관리 및 실행
     implementation("org.springframework.cloud:spring-cloud-function-adapter-aws:4.0.5")  // AWS Lambda를 위한 Spring Cloud Function 어댑터. 함수를 AWS Lambda에서 실행할 수 있게 설정
+    implementation("com.amazonaws:aws-lambda-java-events:3.11.3") // AWS Lambda 이벤트를 위한 의존성 추가
+
 
     implementation("org.springframework.boot:spring-boot-starter")  // 스프링 부트 기본 스타터. 웹 개발, 설정, AOP 등 다양한 기능 제공
     testImplementation("org.springframework.boot:spring-boot-starter-test") // 스프링 부트 테스트 스타터. JUnit, TestNG 등 테스트 프레임워크와 통합 제공.
