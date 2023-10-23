@@ -1,6 +1,6 @@
 package dev.sypg.app.service.client.openapi
 
-import dev.sypg.app.client.openapi.CalendarClient
+import dev.sypg.app.client.publicapi.CalendarClient
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest

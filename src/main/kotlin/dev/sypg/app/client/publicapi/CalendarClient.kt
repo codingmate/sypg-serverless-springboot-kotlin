@@ -1,4 +1,4 @@
-package dev.sypg.app.client
+package dev.sypg.app.client.publicapi
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
 import org.slf4j.LoggerFactory
