@@ -32,13 +32,15 @@ dependencies {
     implementation ("com.amazonaws:aws-lambda-java-events:3.11.1") // AWS Lambda 이벤트를 위한 의존성 추가
     implementation("com.amazonaws.serverless:aws-serverless-java-container-spring:2.0.0-M2")    // AWS Lambda를 위한 Spring Boot 컨테이너 의존성 추가
     implementation("com.amazonaws.serverless:aws-serverless-java-container-springboot3:2.0.0-M2")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.0.4") // OpenFeign 의존성 추가
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.15.3") // XML 지원을 위한 Jackson 의존성 추가
+
     implementation("io.ktor:ktor-client-cio-jvm:2.3.5") // AWS Lambda를 위한 Spring Boot 2 컨테이너 의존성 추가
     runtimeOnly ("com.amazonaws:aws-lambda-java-log4j2:1.5.1") // 로깅을 위한 런타임 의존성 추가
 
     implementation("com.google.code.gson:gson:2.8.9") // Gson 의존성 추가
 
     implementation("io.ktor:ktor-client-core-jvm:2.3.5") // Ktor 클라이언트 의존성 추가
-
 
     developmentOnly("org.springframework.cloud:spring-cloud-starter-function-web:4.0.5") // Spring Cloud Function의 웹 기능을 지원하는 스타터. 함수를 웹 엔드포인트로 노출
     implementation("org.springframework.cloud:spring-cloud-function-kotlin:4.0.5")  // Kotlin을 위한 Spring Cloud Function 지원

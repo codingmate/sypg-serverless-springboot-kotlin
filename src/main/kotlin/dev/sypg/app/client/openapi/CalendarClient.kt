@@ -1,5 +1,5 @@
-package dev.sypg.app.service.client.openapi
-import dev.sypg.app.service.client.openapi.res.CalendarClientResponse
+package dev.sypg.app.client.openapi
+import dev.sypg.app.client.openapi.res.CalendarClientResponse
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.request.*
