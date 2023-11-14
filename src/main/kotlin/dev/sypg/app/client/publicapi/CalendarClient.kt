@@ -1,98 +1,9 @@
 package dev.sypg.app.client.publicapi
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
-import org.slf4j.LoggerFactory
 import org.springframework.cloud.openfeign.FeignClient
-
-import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
-import java.time.LocalDate
-
-@RestController
-@RequestMapping("/api/calendar")
-class CalendarController(private val calendarService: CalendarService) {
-
-    companion object {
-        val logger = LoggerFactory.getLogger(CalendarController::class.java)
-    }
-    data class SolarDateParams(
-        val solYear: Int,
-        val solMonth: Int,
-        val solDay: Int
-    )
-    @GetMapping("/lunar")
-    fun getLunarDateBySolarDate(params: SolarDateParams): LocalDate {
-        logger.info("getLunarDateBySolarDate")
-        logger.info("solYear: ${params.solYear}, solMonth: ${params.solMonth}, solDay: ${params.solDay}")
-
-        val solarDate = calendarService.getLunarDateBySolarDate(LocalDate.of(params.solYear, params.solMonth, params.solDay))
-        logger.info("solarDate: $solarDate")
-
-        return solarDate
-    }
-
-    data class LunarDateParams(
-        val lunYear: Int,
-        val lunMonth: Int,
-        val lunDay: Int
-    )
-    @GetMapping("/solar")
-    fun getSolarDateByLunarDate(params: LunarDateParams): LocalDate {
-        logger.info("getSolarDateByLunarDate")
-        logger.info("lunYear: ${params.lunYear}, lunMonth: ${params.lunMonth}, lunDay: ${params.lunDay}")
-
-        val lunarDate = calendarService.getSolarDateByLunarDate(LocalDate.of(params.lunYear, params.lunMonth, params.lunDay))
-        logger.info("lunarDate: $lunarDate")
-
-        return lunarDate
-    }
-
-}
-@Service
-class CalendarService(private val client: CalendarClient) {
-    fun getLunarDateBySolarDate(solarDate: LocalDate): LocalDate {
-        val solYear = solarDate.year.toString()
-        val solMonth = (if (solarDate.monthValue < 10) "0" else "") + solarDate.monthValue
-        val solDay = (if (solarDate.dayOfMonth < 10) "0" else "") + solarDate.dayOfMonth
-
-        val response = client.getLunCalInfo(
-            solYear,
-            solMonth,
-            solDay,
-            "2oZgjmX5voitj34%2FUianpw77PCv41zm5IQ8NDXUsDERsTAve9wzr1IDCQm7aJ2wtPMp5XH1Dy1b%2F3Rr0VQH0rw%3D%3D"
-        )
-        val item = response.body.items.item
-
-        val lunYear = item.lunYear
-        val lunMonth = item.lunMonth
-        val lunDay = item.lunDay
-
-        return LocalDate.of(lunYear, lunMonth, lunDay)
-    }
-
-    fun getSolarDateByLunarDate(lunarDate: LocalDate): LocalDate {
-        val lunYear = lunarDate.year.toString()
-        val lunMonth = (if (lunarDate.monthValue < 10) "0" else "") + lunarDate.monthValue
-        val lunDay = (if (lunarDate.dayOfMonth < 10) "0" else "") + lunarDate.dayOfMonth
-
-        val response = client.getSolCalInfo(
-            lunYear,
-            lunMonth,
-            lunDay,
-            "2oZgjmX5voitj34%2FUianpw77PCv41zm5IQ8NDXUsDERsTAve9wzr1IDCQm7aJ2wtPMp5XH1Dy1b%2F3Rr0VQH0rw%3D%3D"
-        )
-        val item = response.body.items.item
-
-        val solYear = item.solYear
-        val solMonth = item.solMonth
-        val solDay = item.solDay
-
-        return LocalDate.of(solYear, solMonth, solDay)
-    }
-}
 @FeignClient(name = "calendarClient", url = "http://apis.data.go.kr/B090041/openapi/service/LrsrCldInfoService")
 interface CalendarClient {
     @GetMapping(value = ["/getLunCalInfo"], headers = ["Accept=application/xml"])
