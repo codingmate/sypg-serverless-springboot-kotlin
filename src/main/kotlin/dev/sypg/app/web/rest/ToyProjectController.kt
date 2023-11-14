@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/project")
-class ProjectController {
+@RequestMapping("/api/toy-project")
+@CrossOrigin(origins = ["http://localhost:3000", "http://sypg-react.s3-website.ap-northeast-2.amazonaws.com"])
+class ToyProjectController {
 
     data class Project(val name: String, val reactFilePath: String)
-    @CrossOrigin(origins = ["http://localhost:3000"])
-    @GetMapping("/", produces = ["application/json"])
+    @GetMapping("", produces = ["application/json"])
     fun getProjectList(): List<Project> {
-        println("hi?")
+
         return listOf(
             Project("음양력 전환", "calendar-converter"),
             Project("미개발", "")
